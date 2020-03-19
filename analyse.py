@@ -57,13 +57,60 @@ finalgoldrate.pop()
 setxaxis()
 
 
-print(sum_each_day)
+print('sum', sum_each_day)
 #print("################the rates##################")
-print(finalgoldrate)
+for i in range(len(finalgoldrate)):
+    x = ""
+    for y in finalgoldrate[i]:
+        if y == ',':
+            continue
+        else:
+            x += y
+    finalgoldrate[i] = int(x) 
 #print("############this is the xaaxis##############")
 #print(len(xaxis))
 
-plt.plot(xaxis, sum_each_day, label = "line 1")
+# plt.plot(xaxis, sum_each_day, label = "line 1")
+
+# plt.xlabel('x - axis')
+# # Set the y axis label of the current axis.
+# plt.ylabel('y - axis')
+# # Set a title of the current axes.
+# plt.title('Two or more lines on same plot with suitable legends ')
+# # show a legend on the plot
+# plt.legend()
+# # Display a figure.
+# plt.show()
+
+# plt.plot(xaxis, finalgoldrate, label = "line 1")
+# plt.xlabel('x - axis')
+# # Set the y axis label of the current axis.
+# plt.ylabel('y - axis')
+# # Set a title of the current axes.
+# plt.title('Two or more lines on same plot with suitable legends ')
+# # show a legend on the plot
+# plt.legend()
+# # Display a figure.
+# plt.show()
+
+xaxis.pop()
+
+corona_deltas = []
+
+for i in range(1,len(sum_each_day)):
+    today, yesterday = sum_each_day[i], sum_each_day[i-1]
+    corona_deltas.append(((today - yesterday) / today) * 100)
+
+gold_deltas = []
+
+
+for i in range(1,len(finalgoldrate)):
+    today, yesterday = finalgoldrate[i], finalgoldrate[i-1]
+    gold_deltas.append(((today - yesterday) / today) * 100)
+
+print(len(xaxis), len(corona_deltas), len(gold_deltas))
+
+plt.plot(xaxis, corona_deltas, label = "line 1")
 
 plt.xlabel('x - axis')
 # Set the y axis label of the current axis.
@@ -73,9 +120,8 @@ plt.title('Two or more lines on same plot with suitable legends ')
 # show a legend on the plot
 plt.legend()
 # Display a figure.
-plt.show()
 
-plt.plot(xaxis, finalgoldrate, label = "line 1")
+plt.plot(xaxis, gold_deltas, label = "line 1")
 plt.xlabel('x - axis')
 # Set the y axis label of the current axis.
 plt.ylabel('y - axis')
