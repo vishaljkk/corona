@@ -115,7 +115,19 @@ for i in range(0,len(finalgoldrate)):
     today, yesterday = finalgoldrate[i], finalgoldrate[i-1]
     gold_deltas.append(((today - yesterday) / today) * 100)
 
-print(len(x_values), len(growth_rate), len(gold_deltas))
+new_xvalues=[]
+for i in range(int(int(len(x_values))/2),len(x_values)):
+    new_xvalues.append(x_values[i])
+
+new_growth_rate=[]
+for i in range(int(int(len(growth_rate))/2),len(growth_rate)):
+    new_growth_rate.append(growth_rate[i])
+new_xvalues=[]
+for i in range(int(int(len(x_values))/2),len(x_values)):
+    new_xvalues.append(x_values[i])
+print("###############3finally the datas rare")
+print(new_xvalues,new_growth_rate)
+print(len(new_xvalues), len(new_growth_rate), len(gold_deltas))
 
 
 ax = plt.gca()
@@ -131,8 +143,8 @@ locator = mdates.DayLocator()
 #set locator
 
 ax.xaxis.set_major_locator(locator)
-plt.scatter(x_values, growth_rate)
-plt.plot(x_values, growth_rate, label = "line 1")
+plt.scatter(new_xvalues, new_growth_rate)
+plt.plot(new_xvalues, new_growth_rate, label = "line 1")
 #plt.scatter(x_values, gold_deltas)
 #plt.plot(x_values, gold_deltas,label = "line 2")
 plt.xlabel('x - axis')
